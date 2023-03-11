@@ -16,11 +16,11 @@ namespace FitnessApp.BL.Model
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime BirthData { get; }
+        public DateTime BirthData { get; set; }
         /// <summary>
         /// Вес.
         /// </summary>
@@ -29,6 +29,10 @@ namespace FitnessApp.BL.Model
         /// Рост.
         /// </summary>
         public double Height { get; set; }
+        /// <summary>
+        /// Возраст.
+        /// </summary>
+        public int Age { get { return DateTime.Now.Year - BirthData.Year; } }
         #endregion
 
         /// <summary>
@@ -81,9 +85,18 @@ namespace FitnessApp.BL.Model
             Height = height;
         }
 
+        public User(string name) 
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Имя пользователя не может быть пустыи или null.", nameof(name));
+            }
+            Name = name;
+        }
+
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age;
         }
 
     }
