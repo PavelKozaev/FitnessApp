@@ -10,7 +10,7 @@ namespace FitnessApp.CMD
     {
         static void Main(string[] args)
         {
-            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
+            var culture = CultureInfo.CreateSpecificCulture("en-us");
             var resourceManager = new ResourceManager("FitnessApp.CMD.Languages.Messages", typeof(Program).Assembly);
 
             Console.WriteLine(resourceManager.GetString("Hello", culture));

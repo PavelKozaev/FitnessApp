@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace FitnessApp.BL.Model
 {
@@ -8,11 +10,13 @@ namespace FitnessApp.BL.Model
     [Serializable]
     public class User
     {
+
         #region Свойства
+        public int Id { get; set; }
         /// <summary>
         /// Имя.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
         /// <summary>
         /// Пол.
         /// </summary>
@@ -33,6 +37,11 @@ namespace FitnessApp.BL.Model
         /// Возраст.
         /// </summary>
         public int Age { get { return DateTime.Now.Year - BirthData.Year; } }
+
+        public virtual ICollection<Eating> Eatings { get; set; }
+
+        public virtual ICollection<Exercise> Exercise { get; set; }
+
         #endregion
 
         /// <summary>
@@ -45,6 +54,8 @@ namespace FitnessApp.BL.Model
         /// <param name="height">Рост.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
+        
+        
         public User(string name, 
                     Gender gender, 
                     DateTime birthDate, 
@@ -84,6 +95,8 @@ namespace FitnessApp.BL.Model
             Weight = weight;
             Height = height;
         }
+
+        public User() { }
 
         public User(string name) 
         {
